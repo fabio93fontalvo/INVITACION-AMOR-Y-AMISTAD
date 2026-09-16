@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Quiero</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Corazones de fondo -->
+        <div class="hearts-background" id="heartsContainer"></div>
+        
+        <!-- PÁGINA 1: Invitación inicial -->
+        <div class="page" id="page1">
+            <div class="content">
+                <h1>TU AMOR Y AMISTAD QUIERE INVITARTE<br>A ALGO</h1>
+                
+                <div class="question">
+                    <p>¿Eres lo suficientemente valiente para aceptar, o quieres dejarlo plantado y con el corazón roto?</p>
+                </div>
+                
+                <div class="buttons">
+                    <button class="btn btn-yes" onclick="irPagina2()">SÍ ACEPTO LA INVITACIÓN</button>
+                    <button class="btn btn-no" onclick="irPagina2()">NO ACEPTO DEJARLO PLANTADO</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 2: Seleccionar fecha -->
+        <div class="page" id="page2" style="display:none;">
+            <div class="content">
+                <h1>¿QUÉ DÍA PREFIERES IR A CENAR?</h1>
+                
+                <div class="date-selector">
+                    <input type="date" id="fechaCena" min="2026-09-20" onchange="validarFecha()">
+                    <p id="fechaError" style="color: #ff1493; margin-top: 10px; font-weight: bold; display:none;">Por favor selecciona una fecha desde el 20 de septiembre</p>
+                </div>
+                
+                <button class="btn btn-yes" onclick="irPagina3()" id="btnContinuarFecha" disabled>CONTINUAR</button>
+            </div>
+        </div>
+
+        <!-- PÁGINA 3: Seleccionar restaurante -->
+        <div class="page" id="page3" style="display:none;">
+            <div class="content">
+                <h1>¿A CUÁL RESTAURANTE PREFIERES?</h1>
+                
+                <div class="restaurant-grid">
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('MUU')">MUU</button>
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('EL TORO')">EL TORO</button>
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('ORIENTAL')">ORIENTAL</button>
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('PISO 4')">PISO 4</button>
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('GLOPI')">GLOPI</button>
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('RICKY´S')">RICKY´S</button>
+                    <button class="restaurant-btn" onclick="seleccionarRestaurante('TEQUEYOYO')">TEQUEYOYO</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 4: Confirmar outfit -->
+        <div class="page" id="page4" style="display:none;">
+            <div class="content">
+                <h1>GRACIAS POR PARTICIPAR DE LA ENCUESTA</h1>
+                
+                <div class="question">
+                    <p>ALISTA TU OUTFIT PARA LA CENA EN <span id="restauranteSeleccionado"></span>, ¿ENTENDIDO?</p>
+                </div>
+                
+                <div class="buttons">
+                    <button class="btn btn-yes" onclick="irPagina5()">SÍ</button>
+                    <button class="btn btn-yes" onclick="irPagina5()">OBVIO QUE SÍ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 5: Mensaje final -->
+        <div class="page" id="page5" style="display:none;">
+            <div class="content">
+                <h1 style="font-size: 3em;">LUCE BELLA COMO SIEMPRE</h1>
+                <h2 style="font-size: 2.2em; margin-top: 30px; margin-bottom: 40px;">TE AMO ❤️</h2>
+                
+                <button class="btn btn-yes" onclick="enviarResumen()">VER RESUMEN DE LA CITA</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
