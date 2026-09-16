@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te Quiero</title>
+    <title>Te Amo 💕</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <!-- Corazones de fondo -->
-        <div class="hearts-background" id="heartsContainer"></div>
+        <!-- Fondo de corazones -->
+        <div class="hearts-bg" id="heartsContainer"></div>
         
         <!-- PÁGINA 1: Invitación inicial -->
         <div class="page" id="page1">
             <div class="content">
-                <h1>TU AMOR Y AMISTAD QUIERE INVITARTE<br>A ALGO</h1>
+                <h1 class="title-main">TU AMOR Y AMISTAD<br>QUIERE INVITARTE<br>A ALGO</h1>
                 
-                <div class="question">
+                <div class="question-box">
                     <p>¿Eres lo suficientemente valiente para aceptar, o quieres dejarlo plantado y con el corazón roto?</p>
                 </div>
                 
-                <div class="buttons">
-                    <button class="btn btn-yes" onclick="irPagina2()">SÍ ACEPTO LA INVITACIÓN</button>
-                    <button class="btn btn-no" onclick="irPagina2()">NO ACEPTO DEJARLO PLANTADO</button>
+                <div class="buttons-container">
+                    <button class="btn-interactive" onclick="irPagina2()">
+                        <span>SÍ ACEPTO</span>
+                        <span class="heart-icon">❤️</span>
+                    </button>
+                    <button class="btn-interactive btn-secondary" onclick="irPagina2()">
+                        <span>NO DEJARLO PLANTADO</span>
+                        <span class="heart-icon">💕</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -30,30 +37,54 @@
         <!-- PÁGINA 2: Seleccionar fecha -->
         <div class="page" id="page2" style="display:none;">
             <div class="content">
-                <h1>¿QUÉ DÍA PREFIERES IR A CENAR?</h1>
+                <h1 class="title-main">¿QUÉ DÍA PREFIERES<br>IR A CENAR?</h1>
                 
-                <div class="date-selector">
-                    <input type="date" id="fechaCena" min="2026-09-20" onchange="validarFecha()">
-                    <p id="fechaError" style="color: #ff1493; margin-top: 10px; font-weight: bold; display:none;">Por favor selecciona una fecha desde el 20 de septiembre</p>
+                <div class="date-container">
+                    <input type="date" id="fechaCena" min="2026-09-20" onchange="validarFecha()" class="date-input">
+                    <p id="fechaError" class="error-msg">Por favor selecciona una fecha desde el 20 de septiembre 🥺</p>
                 </div>
                 
-                <button class="btn btn-yes" onclick="irPagina3()" id="btnContinuarFecha" disabled>CONTINUAR</button>
+                <button class="btn-interactive" onclick="irPagina3()" id="btnContinuarFecha" disabled>
+                    <span>CONTINUAR</span>
+                    <span class="heart-icon">💕</span>
+                </button>
             </div>
         </div>
 
         <!-- PÁGINA 3: Seleccionar restaurante -->
         <div class="page" id="page3" style="display:none;">
             <div class="content">
-                <h1>¿A CUÁL RESTAURANTE PREFIERES?</h1>
+                <h1 class="title-main">¿A CUÁL RESTAURANTE<br>PREFIERES?</h1>
                 
-                <div class="restaurant-grid">
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('MUU')">MUU</button>
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('EL TORO')">EL TORO</button>
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('ORIENTAL')">ORIENTAL</button>
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('PISO 4')">PISO 4</button>
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('GLOPI')">GLOPI</button>
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('RICKY´S')">RICKY´S</button>
-                    <button class="restaurant-btn" onclick="seleccionarRestaurante('TEQUEYOYO')">TEQUEYOYO</button>
+                <div class="restaurants-container">
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('MUU')">
+                        <span class="heart-deco">💕</span>
+                        <span class="name">MUU</span>
+                    </button>
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('EL TORO')">
+                        <span class="heart-deco">❤️</span>
+                        <span class="name">EL TORO</span>
+                    </button>
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('ORIENTAL')">
+                        <span class="heart-deco">💕</span>
+                        <span class="name">ORIENTAL</span>
+                    </button>
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('PISO 4')">
+                        <span class="heart-deco">❤️</span>
+                        <span class="name">PISO 4</span>
+                    </button>
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('GLOPI')">
+                        <span class="heart-deco">💕</span>
+                        <span class="name">GLOPI</span>
+                    </button>
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('RICKY´S')">
+                        <span class="heart-deco">❤️</span>
+                        <span class="name">RICKY´S</span>
+                    </button>
+                    <button class="restaurant-card" onclick="seleccionarRestaurante('TEQUEYOYO')">
+                        <span class="heart-deco">💕</span>
+                        <span class="name">TEQUEYOYO</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -61,15 +92,23 @@
         <!-- PÁGINA 4: Confirmar outfit -->
         <div class="page" id="page4" style="display:none;">
             <div class="content">
-                <h1>GRACIAS POR PARTICIPAR DE LA ENCUESTA</h1>
+                <h1 class="title-main">GRACIAS POR<br>PARTICIPAR 💕</h1>
                 
-                <div class="question">
-                    <p>ALISTA TU OUTFIT PARA LA CENA EN <span id="restauranteSeleccionado"></span>, ¿ENTENDIDO?</p>
+                <div class="question-box">
+                    <p>ALISTA TU OUTFIT PARA LA CENA EN</p>
+                    <p class="restaurant-highlight" id="restauranteSeleccionado"></p>
+                    <p>¿ENTENDIDO?</p>
                 </div>
                 
-                <div class="buttons">
-                    <button class="btn btn-yes" onclick="irPagina5()">SÍ</button>
-                    <button class="btn btn-yes" onclick="irPagina5()">OBVIO QUE SÍ</button>
+                <div class="buttons-container">
+                    <button class="btn-interactive" onclick="irPagina5()">
+                        <span>SÍ</span>
+                        <span class="heart-icon">❤️</span>
+                    </button>
+                    <button class="btn-interactive btn-secondary" onclick="irPagina5()">
+                        <span>OBVIO QUE SÍ</span>
+                        <span class="heart-icon">💕</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -77,10 +116,13 @@
         <!-- PÁGINA 5: Mensaje final -->
         <div class="page" id="page5" style="display:none;">
             <div class="content">
-                <h1 style="font-size: 3em;">LUCE BELLA COMO SIEMPRE</h1>
-                <h2 style="font-size: 2.2em; margin-top: 30px; margin-bottom: 40px;">TE AMO ❤️</h2>
+                <h1 class="title-final">LUCE BELLA<br>COMO SIEMPRE</h1>
+                <h2 class="title-final-secondary">TE AMO 💕</h2>
                 
-                <button class="btn btn-yes" onclick="enviarResumen()">VER RESUMEN DE LA CITA</button>
+                <button class="btn-interactive" onclick="window.location.reload()">
+                    <span>EMPEZAR DE NUEVO</span>
+                    <span class="heart-icon">❤️</span>
+                </button>
             </div>
         </div>
     </div>
