@@ -2,131 +2,239 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te Amo 💕</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#ffc1dc">
+
+    <title>Una invitación especial 💕</title>
+
     <link rel="stylesheet" href="Style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <!-- Fondo de corazones -->
-        <div class="hearts-bg" id="heartsContainer"></div>
-        
-        <!-- PÁGINA 1: Invitación inicial -->
-        <div class="page" id="page1">
-            <div class="content">
-                <h1 class="title-main">TU AMOR Y AMISTAD<br>QUIERE INVITARTE<br>A ALGO</h1>
-                
-                <div class="question-box">
-                    <p>¿Eres lo suficientemente valiente para aceptar, o quieres dejarlo plantado y con el corazón roto?</p>
-                </div>
-                
-                <div class="buttons-container">
-                    <button class="btn-interactive" onclick="irPagina2()">
-                        <span>SÍ ACEPTO</span>
-                        <span class="heart-icon">❤️</span>
-                    </button>
-                    <button class="btn-interactive btn-secondary" onclick="irPagina2()">
-                        <span>SI PERO DE ESTE LADO</span>
-                        <span class="heart-icon">💕</span>
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <!-- PÁGINA 2: Seleccionar fecha -->
-        <div class="page" id="page2" style="display:none;">
-            <div class="content">
-                <h1 class="title-main">¿QUÉ DÍA PREFIERES<br>IR A CENAR?</h1>
-                
-                <div class="date-container">
-                    <input type="date" id="fechaCena" min="2026-09-20" onchange="validarFecha()" class="date-input">
-                    <p id="fechaError" class="error-msg">Por favor selecciona una fecha desde el 20 de septiembre 🥺</p>
-                </div>
-                
-                <button class="btn-interactive" onclick="irPagina3()" id="btnContinuarFecha" disabled>
-                    <span>CONTINUAR</span>
-                    <span class="heart-icon">💕</span>
+    <!-- FONDO DE CORAZONES -->
+    <div id="corazonesFondo"></div>
+
+
+    <!-- ============================= -->
+    <!-- PÁGINA 1 -->
+    <!-- ============================= -->
+
+    <section id="pagina1" class="pagina activa">
+
+        <div class="contenido">
+
+            <div class="corazon-grande">💕</div>
+
+            <h1>
+                TU AMOR Y AMISTAD
+            </h1>
+
+            <h2>
+                TE QUIERE INVITAR A CENAR
+            </h2>
+
+            <p class="pregunta">
+                ¿ESTÁS PREPARADA PARA ESCOGER?
+            </p>
+
+            <div class="botones">
+
+                <button
+                    class="boton boton-principal"
+                    onclick="tomarDecision(2)"
+                >
+                    SÍ
                 </button>
-            </div>
-        </div>
 
-        <!-- PÁGINA 3: Seleccionar restaurante -->
-        <div class="page" id="page3" style="display:none;">
-            <div class="content">
-                <h1 class="title-main">¿A CUÁL RESTAURANTE<br>PREFIERES?</h1>
-                
-                <div class="restaurants-container">
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('MUU')">
-                        <span class="heart-deco">💕</span>
-                        <span class="name">MUU</span>
-                    </button>
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('EL TORO')">
-                        <span class="heart-deco">❤️</span>
-                        <span class="name">EL TORO</span>
-                    </button>
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('ORIENTAL')">
-                        <span class="heart-deco">💕</span>
-                        <span class="name">ORIENTAL</span>
-                    </button>
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('PISO 4')">
-                        <span class="heart-deco">❤️</span>
-                        <span class="name">PISO 4</span>
-                    </button>
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('GLOPI')">
-                        <span class="heart-deco">💕</span>
-                        <span class="name">GLOPI</span>
-                    </button>
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('RICKY´S')">
-                        <span class="heart-deco">❤️</span>
-                        <span class="name">RICKY´S</span>
-                    </button>
-                    <button class="restaurant-card" onclick="seleccionarRestaurante('TEQUEYOYO')">
-                        <span class="heart-deco">💕</span>
-                        <span class="name">TEQUEYOYO</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- PÁGINA 4: Confirmar outfit -->
-        <div class="page" id="page4" style="display:none;">
-            <div class="content">
-                <h1 class="title-main">GRACIAS POR<br>PARTICIPAR 💕</h1>
-                
-                <div class="question-box">
-                    <p>ALISTA TU OUTFIT PARA LA CENA EN</p>
-                    <p class="restaurant-highlight" id="restauranteSeleccionado"></p>
-                    <p>¿ENTENDIDO?</p>
-                </div>
-                
-                <div class="buttons-container">
-                    <button class="btn-interactive" onclick="irPagina5()">
-                        <span>SÍ</span>
-                        <span class="heart-icon">❤️</span>
-                    </button>
-                    <button class="btn-interactive btn-secondary" onclick="irPagina5()">
-                        <span>OBVIO QUE SÍ</span>
-                        <span class="heart-icon">💕</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- PÁGINA 5: Mensaje final -->
-        <div class="page" id="page5" style="display:none;">
-            <div class="content">
-                <h1 class="title-final">LUCE BELLA<br>COMO SIEMPRE</h1>
-                <h2 class="title-final-secondary">TE AMO 💕</h2>
-                
-                <button class="btn-interactive" onclick="window.location.reload()">
-                    <span>EMPEZAR DE NUEVO</span>
-                    <span class="heart-icon">❤️</span>
+                <button
+                    class="boton boton-amor"
+                    onclick="tomarDecision(2)"
+                >
+                    SÍ, AMOR MÍO, LINDO, SABROSO, PRECIOSO 💕
                 </button>
+
             </div>
+
         </div>
-    </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- PÁGINA 2 -->
+    <!-- ============================= -->
+
+    <section id="pagina2" class="pagina">
+
+        <div class="contenido">
+
+            <div class="emoji-titulo">💗</div>
+
+            <h1>
+                ESCOGE LA FECHA
+            </h1>
+
+            <p>
+                Elige el día en que nos veremos.
+            </p>
+
+            <p class="fecha-ayuda">
+                Disponible desde el 20 de septiembre de 2026
+            </p>
+
+            <input
+                type="date"
+                id="fecha"
+                min="2026-09-20"
+            >
+
+            <button
+                class="boton boton-continuar"
+                onclick="confirmarFecha()"
+            >
+                CONTINUAR 💕
+            </button>
+
+            <p id="mensajeFecha" class="mensaje-error"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- PÁGINA 3 -->
+    <!-- ============================= -->
+
+    <section id="pagina3" class="pagina">
+
+        <div class="contenido restaurantes-contenido">
+
+            <div class="emoji-titulo">🍽️</div>
+
+            <h1>
+                AHORA ESCOGE
+            </h1>
+
+            <p>
+                ¿Dónde quieres que sea nuestra cena?
+            </p>
+
+            <div class="restaurantes">
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('MUU')"
+                >
+                    MUU 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('EL TORO')"
+                >
+                    EL TORO 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('ORIENTAL')"
+                >
+                    ORIENTAL 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('PISO 4')"
+                >
+                    PISO 4 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('RICKYS')"
+                >
+                    RICKYS 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('OVALO')"
+                >
+                    OVALO 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('TEQUEYOYO')"
+                >
+                    TEQUEYOYO 💕
+                </button>
+
+                <button
+                    class="restaurante"
+                    onclick="escogerRestaurante('AREPAS DEL GORDO')"
+                >
+                    AREPAS DEL GORDO 💕
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- PÁGINA 4 -->
+    <!-- ============================= -->
+
+    <section id="pagina4" class="pagina">
+
+        <div class="contenido final">
+
+            <div class="corazon-final">
+                💕
+            </div>
+
+            <h1>
+                PONTE HERMOSA
+                <br>
+                COMO SIEMPRE
+            </h1>
+
+            <p class="nos-vemos">
+                NOS VEMOS EN
+            </p>
+
+            <h2 id="restauranteFinal">
+                RESTAURANTE
+            </h2>
+
+            <p class="fecha-final">
+                <span id="fechaFinal"></span>
+            </p>
+
+            <div class="te-amo">
+                TE AMO ❤️
+            </div>
+
+            <div class="corazones-finales">
+                💕 💗 💕
+            </div>
+
+        </div>
+
+    </section>
+
 
     <script src="script.js"></script>
+
 </body>
 </html>
