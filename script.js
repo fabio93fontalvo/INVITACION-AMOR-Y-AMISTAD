@@ -2,20 +2,36 @@
 let fechaSeleccionada = null;
 let restauranteSeleccionado = null;
 
-// Generar corazones flotantes
+// Generar corazones flotantes que se mueven por toda la pantalla
 function generarCorazones() {
     const container = document.getElementById('heartsContainer');
-    const numeroCorazones = 20;
+    const numeroCorazones = 25;
     
     for (let i = 0; i < numeroCorazones; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart');
         heart.innerHTML = '❤️';
         
+        // Posición inicial aleatoria
         heart.style.left = Math.random() * 100 + '%';
         heart.style.top = Math.random() * 100 + '%';
-        heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        heart.style.animationDelay = Math.random() * 2 + 's';
+        
+        // Duración aleatoria de la animación (15-25 segundos)
+        const duration = Math.random() * 10 + 15;
+        heart.style.animationDuration = duration + 's';
+        
+        // Retraso aleatorio para que no todas comiencen al mismo tiempo
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        
+        // Dirección aleatoria (cambiar transformación)
+        const randomDirection = Math.random();
+        if (randomDirection < 0.33) {
+            heart.style.setProperty('--direction', '1');
+        } else if (randomDirection < 0.66) {
+            heart.style.setProperty('--direction', '2');
+        } else {
+            heart.style.setProperty('--direction', '3');
+        }
         
         container.appendChild(heart);
     }
@@ -125,7 +141,7 @@ function crearExplosionCorazones() {
     }
 }
 
-// Enviar resumen (opcional: podrías enviar por email)
+// Enviar resumen
 function enviarResumen() {
     const fecha = new Date(fechaSeleccionada).toLocaleDateString('es-ES', {
         weekday: 'long',
