@@ -2,46 +2,53 @@
 let fechaSeleccionada = null;
 let restauranteSeleccionado = null;
 
-// Generar corazones flotantes que se mueven por toda la pantalla
+// Generar MUCHOS corazones de diferentes tamaños
 function generarCorazones() {
     const container = document.getElementById('heartsContainer');
-    const numeroCorazones = 25;
+    const numeroCorazones = 60; // Más corazones
+    const corazones = ['❤️', '💕', '💖', '💗'];
+    const tamaños = ['size-small', 'size-medium', 'size-large'];
     
     for (let i = 0; i < numeroCorazones; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart');
-        heart.innerHTML = '❤️';
         
-        // Posición inicial aleatoria
+        // Tamaño aleatorio
+        const tamaño = tamaños[Math.floor(Math.random() * tamaños.length)];
+        heart.classList.add(tamaño);
+        
+        // Corazón aleatorio
+        heart.innerHTML = corazones[Math.floor(Math.random() * corazones.length)];
+        
+        // Posición inicial aleatoria horizontal
         heart.style.left = Math.random() * 100 + '%';
-        heart.style.top = Math.random() * 100 + '%';
+        heart.style.bottom = '-100px';
         
-        // Duración aleatoria de la animación (15-25 segundos)
-        const duration = Math.random() * 10 + 15;
+        // Duración aleatoria (15-40 segundos)
+        const duration = Math.random() * 25 + 15;
         heart.style.animationDuration = duration + 's';
         
-        // Retraso aleatorio para que no todas comiencen al mismo tiempo
-        heart.style.animationDelay = Math.random() * 5 + 's';
+        // Retraso aleatorio
+        heart.style.animationDelay = Math.random() * 8 + 's';
         
-        // Dirección aleatoria (cambiar transformación)
-        const randomDirection = Math.random();
-        if (randomDirection < 0.33) {
-            heart.style.setProperty('--direction', '1');
-        } else if (randomDirection < 0.66) {
-            heart.style.setProperty('--direction', '2');
-        } else {
-            heart.style.setProperty('--direction', '3');
-        }
+        // Desplazamiento horizontal
+        const translateX = (Math.random() - 0.5) * 200;
+        heart.style.setProperty('--translate-x', translateX + 'px');
         
         container.appendChild(heart);
     }
 }
 
-// Navegar entre páginas
+// Mostrar página
 function mostrarPagina(numeroPagina) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.style.display = 'none');
     document.getElementById('page' + numeroPagina).style.display = 'block';
+    
+    // Recrear corazones en cada página
+    setTimeout(() => {
+        generarCorazones();
+    }, 300);
 }
 
 function irPagina2() {
@@ -87,50 +94,48 @@ function validarFecha() {
 function seleccionarRestaurante(nombre) {
     restauranteSeleccionado = nombre;
     
-    // Quitar selección anterior
-    const botones = document.querySelectorAll('.restaurant-btn');
+    const botones = document.querySelectorAll('.restaurant-card');
     botones.forEach(btn => btn.classList.remove('selected'));
     
-    // Marcar el seleccionado
-    event.target.classList.add('selected');
+    event.target.closest('.restaurant-card').classList.add('selected');
     
-    // Mostrar en página 4
     document.getElementById('restauranteSeleccionado').textContent = nombre;
     
-    // Ir a página 4 después de un pequeño delay
     setTimeout(() => {
         irPagina4();
-    }, 500);
+    }, 600);
 }
 
-// Crear explosión de corazones
+// Explosión de corazones
 function crearExplosionCorazones() {
-    for (let i = 0; i < 30; i++) {
+    const corazones = ['❤️', '💕', '💖', '💗'];
+    
+    for (let i = 0; i < 50; i++) {
         const heart = document.createElement('div');
-        heart.innerHTML = '❤️';
+        heart.innerHTML = corazones[Math.floor(Math.random() * corazones.length)];
         heart.style.position = 'fixed';
         heart.style.left = '50%';
         heart.style.top = '50%';
-        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+        heart.style.fontSize = Math.random() * 30 + 20 + 'px';
         heart.style.pointerEvents = 'none';
         heart.style.zIndex = '999';
         
         document.body.appendChild(heart);
         
-        let angle = (Math.PI * 2 * i) / 30;
-        let velocity = 5 + Math.random() * 5;
+        let angle = (Math.PI * 2 * i) / 50;
+        let velocity = 8 + Math.random() * 8;
         let x = 0;
         let y = 0;
         
         const animate = () => {
             x += Math.cos(angle) * velocity;
             y += Math.sin(angle) * velocity;
-            y += 0.5;
+            y += 0.8;
             
-            heart.style.transform = `translate(${x}px, ${y}px)`;
-            heart.style.opacity = 1 - (Math.abs(y) / 200);
+            heart.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+            heart.style.opacity = 1 - (Math.abs(y) / 250);
             
-            if (Math.abs(y) < 200) {
+            if (Math.abs(y) < 250) {
                 requestAnimationFrame(animate);
             } else {
                 heart.remove();
@@ -141,19 +146,7 @@ function crearExplosionCorazones() {
     }
 }
 
-// Enviar resumen
-function enviarResumen() {
-    const fecha = new Date(fechaSeleccionada).toLocaleDateString('es-ES', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    
-    const mensaje = `RESUMEN DE TU CITA:\n\nFecha: ${fecha}\nRestaurante: ${restauranteSeleccionado}\n\n¡Nos vemos pronto! ❤️`;
-    
-    alert(mensaje);
-}
-
 // Inicializar
-document.addEventListener('DOMContentLoaded', generarCorazones);
+document.addEventListener('DOMContentLoaded', () => {
+    generarCorazones();
+});
